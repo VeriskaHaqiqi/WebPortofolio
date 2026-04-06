@@ -1,0 +1,764 @@
+/* ============================================================
+   STYLE-ALL.CSS
+   Gabungan Minggu 4 + 5 + 6
+   Tema: Dark mode + aksen biru pastel
+   ============================================================ */
+
+/* --- IMPORT FONT --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* --- CSS VARIABLES (Minggu 4) --- */
+:root {
+    --bg-dark:        #0f1117;
+    --bg-section:     #111420;
+    --bg-card:        #1a1d27;
+    --bg-card-hover:  #1f2335;
+    --blue-pastel:    #a8c5da;
+    --blue-light:     #c5dff0;
+    --blue-dim:       #4a7fa5;
+    --blue-tag:       #1b3a50;
+    --text-primary:   #e8eaf0;
+    --text-secondary: #9aa3b2;
+    --text-muted:     #5c6478;
+    --border-color:   #2a2f42;
+    --glow:           rgba(168, 197, 218, 0.15);
+    --soft-accent:    #6dbfa0;
+    --soft-tag:       #1a3530;
+}
+
+/* --- RESET & BASE (Minggu 4) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--blue-pastel);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+a:hover {
+    color: var(--blue-light);
+    text-decoration: none;
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS (Minggu 6)
+   ============================================================ */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes expandLine {
+    from { width: 0; }
+    to   { width: 60px; }
+}
+
+@keyframes profileGlow {
+    0%, 100% { box-shadow: 0 0 0px var(--glow); }
+    50%       { box-shadow: 0 0 32px var(--glow), 0 0 60px rgba(74,127,165,0.08); }
+}
+
+@keyframes ringPulse {
+    0%, 100% { transform: scale(1);    opacity: 0.4; }
+    50%       { transform: scale(1.06); opacity: 0.7; }
+}
+
+@keyframes tagPop {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================================
+   NAVBAR (Minggu 4 + 5 + 6)
+   ============================================================ */
+.navbar {
+    background-color: #0d1020;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: fadeIn 0.5s ease both;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 18px 0;
+}
+
+/* FLEXBOX: nav berjejer horizontal */
+.nav-menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+.nav-link:hover {
+    color: var(--blue-pastel);
+    text-decoration: none;
+    border-bottom-color: var(--blue-pastel);
+}
+
+.nav-link.active {
+    color: var(--blue-pastel);
+    border-bottom: 3px solid var(--blue-pastel);
+}
+
+/* ============================================================
+   HOME SECTION – FLEXBOX 2 kolom (Minggu 4 + 5)
+   ============================================================ */
+.home {
+    min-height: calc(100vh - 60px);
+    padding: 70px 40px;
+    display: flex;
+    align-items: center;
+}
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    /* FLEXBOX: teks kiri, foto kanan */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+/* KIRI: teks */
+.home-text {
+    flex: 1;
+    animation: slideInLeft 0.7s ease 0.2s both;
+}
+
+.home-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 70px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 28px;
+}
+
+/* Setiap baris info */
+.home-info {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    padding-left: 16px;
+    border-left: 2px solid var(--blue-pastel);
+    animation: fadeInUp 0.5s ease both;
+}
+
+.home-info:nth-child(2) { animation-delay: 0.4s; }
+.home-info:nth-child(3) { animation-delay: 0.55s; }
+.home-info:nth-child(4) { animation-delay: 0.7s; }
+.home-info:nth-child(5) { animation-delay: 0.85s; }
+
+/* Tombol CV */
+.home-info a {
+    color: var(--blue-pastel);
+    font-weight: 500;
+    padding: 6px 20px;
+    border: 1px solid var(--blue-pastel);
+    border-radius: 4px;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s ease;
+}
+
+.home-info a:hover {
+    background-color: var(--blue-dim);
+    color: #fff;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* KANAN: foto */
+.home-image {
+    flex-shrink: 0;
+    position: relative;
+    animation: slideInRight 0.7s ease 0.3s both;
+}
+
+/* Ring dekoratif di belakang foto */
+.home-image::after {
+    content: '';
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border: 2px solid rgba(168, 197, 218, 0.2);
+    z-index: 0;
+    animation: ringPulse 4s ease-in-out infinite;
+}
+
+.profile-photo {
+    width: 400px;
+    height: 530px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 4px solid var(--blue-dim);
+    display: block;
+    position: relative;
+    z-index: 1;
+    animation: profileGlow 3.5s ease-in-out 1s infinite;
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-photo:hover {
+    border-color: var(--blue-pastel);
+    transform: scale(1.02);
+}
+
+/* ============================================================
+   SKILLS SECTION – FLEXBOX: foto kiri, skill kanan
+   ============================================================ */
+.skills-section {
+    background-color: var(--bg-section);
+    padding: 80px 40px;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* FLEXBOX: foto kiri, konten kanan */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 72px;
+}
+
+/* KIRI: foto */
+.skills-image {
+    flex-shrink: 0;
+    animation: slideInLeft 0.7s ease 0.2s both;
+}
+
+.skills-image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.skills-photo {
+    width: 320px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    position: relative;
+    z-index: 2;
+    border: 2px solid var(--border-color);
+    transition: border-color 0.3s ease;
+}
+
+.skills-photo:hover {
+    border-color: var(--blue-dim);
+}
+
+/* Dekorasi lingkaran sudut kiri bawah */
+.skills-image-deco {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid rgba(109, 191, 160, 0.3);
+    z-index: 1;
+    animation: ringPulse 5s ease-in-out infinite;
+}
+
+/* KANAN: konten */
+.skills-content {
+    flex: 1;
+    animation: slideInRight 0.7s ease 0.3s both;
+}
+
+.section-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--soft-accent);
+    background-color: rgba(109, 191, 160, 0.08);
+    border: 1px solid rgba(109, 191, 160, 0.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.skills-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 16px;
+}
+
+.skills-title-highlight {
+    color: var(--blue-pastel);
+}
+
+.skills-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 460px;
+    line-height: 1.8;
+}
+
+/* Grup skill */
+.skill-group {
+    margin-bottom: 24px;
+    animation: fadeInUp 0.6s ease both;
+}
+
+.skill-group:nth-child(4) { animation-delay: 0.5s; }
+.skill-group:nth-child(5) { animation-delay: 0.7s; }
+
+.skill-group-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Titik warna */
+.skill-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.skill-dot.hard { background-color: var(--blue-pastel); }
+.skill-dot.soft { background-color: var(--soft-accent); }
+
+/* Tag skill */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-tag {
+    display: inline-block;
+    font-size: 13px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    animation: tagPop 0.4s ease both;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+}
+
+.skill-tag:hover {
+    transform: translateY(-2px);
+}
+
+/* Hard skill: biru */
+.skill-tag.hard {
+    background-color: var(--blue-tag);
+    color: var(--blue-light);
+    border: 1px solid rgba(168, 197, 218, 0.2);
+}
+
+.skill-tag.hard:hover {
+    background-color: rgba(74, 127, 165, 0.35);
+    box-shadow: 0 4px 12px rgba(74, 127, 165, 0.15);
+}
+
+/* Soft skill: hijau-teal */
+.skill-tag.soft {
+    background-color: var(--soft-tag);
+    color: var(--soft-accent);
+    border: 1px solid rgba(109, 191, 160, 0.2);
+}
+
+.skill-tag.soft:hover {
+    background-color: rgba(109, 191, 160, 0.15);
+    box-shadow: 0 4px 12px rgba(109, 191, 160, 0.1);
+}
+
+/* Stagger animasi tiap tag */
+.skill-tag:nth-child(1)  { animation-delay: 0.55s; }
+.skill-tag:nth-child(2)  { animation-delay: 0.62s; }
+.skill-tag:nth-child(3)  { animation-delay: 0.69s; }
+.skill-tag:nth-child(4)  { animation-delay: 0.76s; }
+.skill-tag:nth-child(5)  { animation-delay: 0.83s; }
+.skill-tag:nth-child(6)  { animation-delay: 0.90s; }
+.skill-tag:nth-child(7)  { animation-delay: 0.97s; }
+.skill-tag:nth-child(8)  { animation-delay: 1.04s; }
+.skill-tag:nth-child(9)  { animation-delay: 1.11s; }
+.skill-tag:nth-child(10) { animation-delay: 1.18s; }
+.skill-tag:nth-child(11) { animation-delay: 1.25s; }
+
+/* ============================================================
+   SECTION TITLES (Organization & Committee pages)
+   ============================================================ */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    color: var(--text-primary);
+    margin-bottom: 48px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    background-color: var(--blue-pastel);
+    animation: expandLine 0.8s ease 0.5s both;
+}
+
+/* ============================================================
+   ORGANIZATION & COMMITTEE SECTION
+   ============================================================ */
+.organization-section,
+.committee-section {
+    padding: 60px 40px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* CARD: FLEXBOX – info kiri, gallery kanan */
+.organization-card,
+.committee-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    transition: background-color 0.3s ease,
+                border-color 0.3s ease,
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease both;
+}
+
+.organization-card:nth-child(2),
+.committee-card:nth-child(2) { animation-delay: 0.2s; }
+.organization-card:nth-child(3),
+.committee-card:nth-child(3) { animation-delay: 0.4s; }
+.organization-card:nth-child(4),
+.committee-card:nth-child(4) { animation-delay: 0.6s; }
+
+.organization-card:hover,
+.committee-card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--blue-dim);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(74, 127, 165, 0.12);
+}
+
+.organization-info,
+.committee-info {
+    flex: 0 0 220px;
+}
+
+.organization-info h3,
+.committee-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--blue-pastel);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    transition: color 0.25s ease;
+}
+
+.organization-card:hover .organization-info h3,
+.committee-card:hover .committee-info h3 {
+    color: var(--blue-light);
+}
+
+.organization-info p,
+.committee-info p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+/* ============================================================
+   GALLERY – menggunakan Bootstrap Grid (row + col-*)
+   ============================================================ */
+.organization-gallery,
+.committee-gallery {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Foto: tampil full sesuai rasio asli, tidak terpotong */
+.gallery-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: transform 0.35s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.04);
+    border-color: var(--blue-dim);
+    box-shadow: 0 4px 20px rgba(74, 127, 165, 0.25);
+}
+
+/* LIGHTBOX */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(6px);
+    animation: fadeIn 0.2s ease both;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+    animation: fadeInUp 0.25s ease both;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 28px;
+    font-size: 36px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.lightbox-close:hover {
+    color: var(--text-primary);
+    transform: scale(1.15);
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+    background-color: #0d1020;
+    border-top: 1px solid var(--border-color);
+    padding: 28px 40px;
+    animation: fadeIn 0.5s ease both;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-container p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.footer-container a {
+    font-size: 13px;
+    color: var(--blue-dim);
+    margin: 0 4px;
+    transition: color 0.25s ease;
+}
+
+.footer-container a:hover {
+    color: var(--blue-pastel);
+}
+
+/* ============================================================
+   MEDIA QUERIES – RESPONSIF (Minggu 5)
+   ============================================================ */
+
+/* ---- TABLET (max 960px) ---- */
+@media (max-width: 960px) {
+
+    .navbar { padding: 0 24px; }
+
+    .home { padding: 50px 24px; }
+    .home-container { gap: 36px; }
+    .home-name { font-size: 40px; }
+    .profile-photo { width: 240px; height: 300px; }
+
+    .skills-section { padding: 60px 24px; }
+    .skills-container { gap: 40px; }
+    .skills-photo { width: 260px; height: 340px; }
+    .skills-title { font-size: 30px; }
+
+    .organization-section,
+    .committee-section { padding: 40px 24px; }
+
+    .organization-card,
+    .committee-card { gap: 24px; }
+
+    .organization-info,
+    .committee-info { flex: 0 0 180px; }
+
+    .organization-gallery,
+    .committee-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ---- MOBILE (max 600px) ---- */
+@media (max-width: 600px) {
+
+    .navbar { padding: 0 16px; }
+    .nav-menu { gap: 16px; }
+    .nav-link { font-size: 11px; letter-spacing: 1px; }
+
+    /* Home: 1 KOLOM */
+    .home {
+        padding: 36px 16px;
+        min-height: auto;
+    }
+
+    .home-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 32px;
+    }
+
+    .home-name { font-size: 30px; }
+
+    .home-info {
+        border-left: none;
+        padding-left: 0;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 6px;
+        text-align: center;
+    }
+
+    .profile-photo { width: 220px; height: 280px; }
+
+    /* Skills: 1 KOLOM */
+    .skills-section { padding: 36px 16px; }
+
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .skills-title { font-size: 26px; }
+    .skills-photo { width: 220px; height: 280px; }
+
+    .skill-group-title { justify-content: center; }
+    .skill-tags { justify-content: center; }
+
+    /* Org & Committee: 1 kolom */
+    .organization-section,
+    .committee-section { padding: 32px 16px; }
+
+    .section-title { font-size: 28px; }
+
+    .organization-card,
+    .committee-card {
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 16px;
+    }
+
+    .organization-info,
+    .committee-info { flex: none; width: 100%; }
+
+    .organization-gallery,
+    .committee-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-img { height: auto; }
+
+    .footer { padding: 20px 16px; }
+}
